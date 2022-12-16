@@ -1,0 +1,12 @@
+{
+    "usage":{
+        "-h":"-h    show this help message",
+        "-v":"-v    show the version of tub",
+        "-s":"-s    show the diffierent format of the result,now only one type",
+        "-e":"-e    form zh to en",
+        "-c":"-c    form en to zh",
+        "q":"q     after the first translate,the command was used to quit the thread",
+        "cm":"cm    after the first translate,was used to change the print mode",
+        "cl":"cl    after the first translate,was used to change the lange"
+    }
+}

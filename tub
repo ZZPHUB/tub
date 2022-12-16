@@ -1,0 +1,101 @@
+#!/home/ZZP/workspace/py_vir_env/py_vir_0/bin/python3
+
+from translate import translate
+import sys
+import json
+
+argv_list = sys.argv
+
+from_lang = 'en'
+to_lang = 'zh'
+
+result_format = 0
+
+def argv_progress(argv):
+    argv_translate = ""
+    global result_format
+    global from_lang
+    global to_lang
+    for i in argv[1::]:
+        if i == '-h':
+            print_usage()
+            sys.exit()
+        elif i == '-v':
+            print("tub version 1.0")
+            sys.exit()
+        else:
+            if '-' in i:
+                if i == '-e':
+                    from_lang='zh'
+                    to_lang='en'
+                elif i == '-c':
+                   from_lang='en'
+                   to_lang='zh' 
+                elif i == '-s':
+                    result_format = 1
+            else:
+                argv_translate = argv_translate + ' ' + i
+    if  argv_translate:
+        argv_result = translate(argv_translate,from_lang,to_lang)
+        print_result(argv_translate,argv_result,result_format)
+    
+            
+
+
+
+def print_usage():    
+    info_json = open('./info.json')
+    info_dict = json.load(info_json)
+    for i in info_dict['usage']:
+        print(info_dict['usage'][i])
+    info_json.close()
+
+
+
+def print_result(translate,result,r_format):
+    global result_format
+    if r_format == 0:
+        print('\n----------------------------------')
+        print(translate+' '+result)
+        print('----------------------------------')
+    elif r_format == 1:
+        print('\n----------------------------------')
+        print(translate+'\n'+result)
+        print('----------------------------------') 
+    else:
+        print('')
+
+def translate_recur():
+    global from_lang
+    global to_lang
+    global result_format
+    print("tub "+from_lang+" to "+to_lang+" (? or puss 'q' to quit):")
+    argv_next = input()
+    
+    if argv_next == 'q' or argv_next == '^D':
+        sys.exit
+    elif argv_next == '':
+        translate_recur()
+    elif argv_next == 'cm':
+        result_format = 1
+        print('\n')
+        translate_recur()
+    elif argv_next == 'cl':
+        if from_lang=='en' and to_lang=='zh':
+            from_lang = 'zh'
+            to_lang = 'en'
+            #print('from '+from_lang+' to '+to_lang+'\n')
+        else:
+            from_lang='en'
+            to_lang='zh'
+            #print('from '+from_lang+' to '+to_lang+'\n')
+        translate_recur()
+    elif argv_next == 'reserve':
+        print('command reserve')
+    else :
+        print_result(argv_next,translate(argv_next,from_lang,to_lang),result_format)
+        translate_recur()
+
+
+argv_progress(argv_list)
+translate_recur()
