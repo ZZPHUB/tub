@@ -3,6 +3,7 @@
 from translate import translate
 import sys
 import json
+import os
 
 argv_list = sys.argv
 
@@ -44,7 +45,7 @@ def argv_progress(argv):
 
 
 def print_usage():    
-    info_json = open('./info.json')
+    info_json = open('info.json')
     info_dict = json.load(info_json)
     for i in info_dict['usage']:
         print(info_dict['usage'][i])
@@ -66,36 +67,42 @@ def print_result(translate,result,r_format):
         print('')
 
 def translate_recur():
-    global from_lang
-    global to_lang
-    global result_format
-    print("tub "+from_lang+" to "+to_lang+" (? or puss 'q' to quit):")
-    argv_next = input()
+    try:
+        global from_lang
+        global to_lang
+        global result_format
+        print("tub "+from_lang+" to "+to_lang+" (? or puss 'q' to quit):")
+        argv_next = input()
     
-    if argv_next == 'q' or argv_next == '^D':
-        sys.exit
-    elif argv_next == '':
-        translate_recur()
-    elif argv_next == 'cm':
-        result_format = 1
-        print('\n')
-        translate_recur()
-    elif argv_next == 'cl':
-        if from_lang=='en' and to_lang=='zh':
-            from_lang = 'zh'
-            to_lang = 'en'
-            #print('from '+from_lang+' to '+to_lang+'\n')
-        else:
-            from_lang='en'
-            to_lang='zh'
-            #print('from '+from_lang+' to '+to_lang+'\n')
-        translate_recur()
-    elif argv_next == 'reserve':
-        print('command reserve')
-    else :
-        print_result(argv_next,translate(argv_next,from_lang,to_lang),result_format)
-        translate_recur()
-
+        if argv_next == 'q' or argv_next == '^D':
+            sys.exit
+        elif argv_next == '':
+            translate_recur()
+        elif argv_next == 'cm':
+            result_format = 1
+            print('\n')
+            translate_recur()
+        elif argv_next == 'cl':
+            if from_lang=='en' and to_lang=='zh':
+                from_lang = 'zh'
+                to_lang = 'en'
+                print('\n')
+            else:
+                from_lang='en'
+                to_lang='zh'
+                print('\n')
+            translate_recur()
+        elif argv_next == 'clr':
+            os.system('clear')
+            translate_recur()
+        elif argv_next == 'reserve':
+            print('command reserve')
+        else :
+            print_result(argv_next,translate(argv_next,from_lang,to_lang),result_format)
+            translate_recur()
+    except (BaseException,Exception) as e:
+        print(e)
+        sys.exit()
 
 argv_progress(argv_list)
 translate_recur()
