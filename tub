@@ -4,19 +4,53 @@ from translate import translate
 import sys
 import json
 import os
+import fileinput
+
 
 argv_list = sys.argv
+
 
 from_lang = 'en'
 to_lang = 'zh'
 
 result_format = 0
 
+def pipe_progress():
+    argv_pipe_get = []
+    argv_pipe_result = []
+    resu = ''
+    with fileinput.input(encoding='utf-8') as f_input:
+        if f_input:
+            for line in f_input:
+                argv_pipe_get.append(line)
+        f_input.close()
+    if argv_pipe_get:
+        print("------------------waiting------------------")
+        for line in argv_pipe_get:
+            if line:
+                if line != '\n':
+                    '''
+                    argv_pipe_result.append(line)
+                    resu = translate(line,from_lang,to_lang)
+                    argv_pipe_result.append(resu)
+                    argv_pipe_result.append('\n')
+                    for r in argv_pipe_result:
+                        print(r)
+
+                    '''
+                    
+                    resu = translate(line,from_lang,to_lang)
+                    print(line+'译：----||'+resu+'||----')                
+        print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
+
 def argv_progress(argv):
+    argv_pipe_result = []
     argv_translate = ""
     global result_format
     global from_lang
     global to_lang
+    if len(argv) == 1:
+        pipe_progress()
     for i in argv[1::]:
         if i == '-h':
             print_usage()
@@ -33,7 +67,10 @@ def argv_progress(argv):
                    from_lang='en'
                    to_lang='zh' 
                 elif i == '-s':
-                    result_format = 1
+                    if result_format == 0:
+                        result_format == 1
+                    elif result_format == 1:
+                        result_format == 0
             else:
                 argv_translate = argv_translate + ' ' + i
     if  argv_translate:
