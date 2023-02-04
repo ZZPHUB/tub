@@ -30,3 +30,7 @@
 
 
 ![image](https://user-images.githubusercontent.com/82870401/208221162-a3cde2a3-080e-4890-b501-9fa0064cd4bb.png)
+
+##新特性
+    管道：`man fork|tub`
+    
