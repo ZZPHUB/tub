@@ -8,9 +8,9 @@ import init
 def translate(string,fr_lang = 'en',to_lang = 'zh'):
     # 所需的参数
     url = 'https://api.fanyi.baidu.com/api/trans/vip/translate'
-    
-    appid = init.app_info.appid
-    secretKey = init.app_info.seckey
+    app_info = init.app_info_mode()
+    appid = app_info.appid
+    secretKey = app_info.seckey
     #print(appid,secretKey)
     fromLang = fr_lang
     toLang = to_lang

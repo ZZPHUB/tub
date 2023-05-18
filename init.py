@@ -38,5 +38,3 @@ class app_info_mode():
 if __name__ == "__main__":
     app_info = app_info_mode()
     print(app_info.appid,app_info.seckey)
-else:
-    app_info = app_info_mode
