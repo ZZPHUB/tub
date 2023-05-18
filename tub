@@ -1,4 +1,4 @@
-#!/home/ZZP/workspace/py_vir_env/py_vir_0/bin/python3
+#!./venv/bin/python3
 
 from translate import translate
 import sys
