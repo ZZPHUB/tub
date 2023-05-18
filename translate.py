@@ -8,9 +8,10 @@ import init
 def translate(string,fr_lang = 'en',to_lang = 'zh'):
     # 所需的参数
     url = 'https://api.fanyi.baidu.com/api/trans/vip/translate'
-    app_info = init.app_info_mode()
-    appid = app_info.appid
-    secretKey = app_info.seckey
+    translate_info = init.app_info_mode()
+    translate_info.translate_init()
+    appid = translate_info.appid
+    secretKey = translate_info.seckey
     #print(appid,secretKey)
     fromLang = fr_lang
     toLang = to_lang
@@ -31,7 +32,8 @@ def translate(string,fr_lang = 'en',to_lang = 'zh'):
     else:
         res_dict = json.loads(response.text)
         try:
-            return res_dict['trans_result'][0]['dst']
+            #print(res_dict)
+            return  [res_dict['trans_result'][0]['src'],res_dict['trans_result'][0]['dst']]
             #print(res_dict['trans_result'][0]['dst'])
         except Exception as e:
             print(f'{e}\n{res_dict}')

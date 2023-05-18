@@ -1,15 +1,18 @@
 #               tub
 
 
-## tub use baidu  命令行翻译脚本^ _ ^
+## ~~tub use baidu  命令行翻译脚本^ _ ^~~
+## tub use baidu 命令行智能脚本^ _ ^
 
 
 ## 介绍
-使用百度翻译api接口，在命令行使用python脚本翻译
+~~使用百度翻译api接口，在命令行使用python脚本翻译~~
+tub具有两种模式，第一种也就是原始功能，即翻译功能（为translate模块）；第二种则利用百度ai，能够进行对话，低智商问题的搜索（为robot模块）。
 
 ## 依赖：
 - python3
 - 百度翻译开放平台申请appid和秘钥，链接[百度翻译开放平台](https://fanyi-api.baidu.com/api/trans/product/desktop)
+- 需要去百度大脑unit主页申请api，连接[百度unit](https://ai.baidu.com/unit/home#/home)
 
 ## 安装：
 - 首先在新建一个文件夹，建议在工作区目录下。这边我是在~/workspace/app目录下新建的文件夹，命令：` mkdir tub `
@@ -27,6 +30,16 @@
 ![image](https://user-images.githubusercontent.com/82870401/208221224-a86d9002-22c2-4f7e-8d80-f11af4cddfcc.png)
 
 ## 用法案例：
+机器人对话：` tub -r [questions]`
+
+``` 另外一种使用方法 ```
+
+```# tub```
+
+```# cm```
+
+```# [questions]``` 
+
 
 翻译英文：` tub -c [english_word] `
 
