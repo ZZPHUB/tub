@@ -3,7 +3,7 @@ import json
 
 class app_info_mode():
     def __init__(self):
-        self.path = os.getcwd()
+        self.path = os.path.abspath(os.path.dirname(__file__))
         #get the appid&seckey;if none set before,then input
         #and store in info.json,if stored in info.json,then 
         #read it 
