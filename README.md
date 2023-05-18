@@ -17,6 +17,7 @@
 - 下载源码，命令：` git clone git@github.com:ZZP-DMU/tub.git `
 - 创建虚拟环境所在文件夹，在tub目录下创建文件夹，这里命名为venv,命令：` mkdir venv`
 - 创建虚拟环境，命令：` python3 -m venv ./venv `
+- 修改tub文件，在tub文件第一行修改为`#!../venv/bin/python3`
 - 安装必要的工具包，命令：` python3 -m pip install requests`
 - 设置环境变量，对于bash，命令：` echo "export PATH='PATH:~/workspace/app/tub'" >> ~/.bashrc `;对于zsh，只需要将.bashrc改为.zshrc
 - 现在即可在命令行输入tub命令，初次运行需要设置自己的appid和秘钥，即在依赖中所提到的
