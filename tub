@@ -56,8 +56,9 @@ def argv_progress(argv):
 
 
 
-def print_usage():    
-    info_json = open('info.json')
+def print_usage():
+    global tub_info    
+    info_json = open(tub_info.path+'/info.json')
     info_dict = json.load(info_json)
     for i in info_dict['usage']:
         print(info_dict['usage'][i])
@@ -90,6 +91,7 @@ def print_result(result=list,r_format=str):
         print('')
 
 def translate_recur():
+    global tub_info
     try:
         if tub_info.mode == "translate":
             print("tub "+tub_info.fromlang+" to "+tub_info.tolang+" (? or puss 'q' to quit):")
