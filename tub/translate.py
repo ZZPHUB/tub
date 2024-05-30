@@ -3,7 +3,7 @@ import hashlib
 import urllib.parse
 import random
 import json
-import init
+from tub import init
 
 def translate(string,fr_lang = 'en',to_lang = 'zh'):
     # 所需的参数
@@ -37,6 +37,3 @@ def translate(string,fr_lang = 'en',to_lang = 'zh'):
             #print(res_dict['trans_result'][0]['dst'])
         except Exception as e:
             print(f'{e}\n{res_dict}')
-
-if __name__ == "__main__":
-    print(translate("hello",'en','zh'))

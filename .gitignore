@@ -1,0 +1,5 @@
+dist/*
+tub.egg-info/*
+!tub/*.py
+tub/__pycache__
+tub/__pycache__/*.pyc

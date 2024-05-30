@@ -5,6 +5,7 @@ import requests
 class app_info_mode():
     def __init__(self):
         self.path = os.path.abspath(os.path.dirname(__file__))
+        #self.path = '.'
         self.mode = "translate"
         self.print_format = "t_mode"
         self.version = "v2.0"
@@ -42,7 +43,7 @@ class app_info_mode():
             self.appid = info_private_appid
             self.seckey = info_private_seckey
             fd.close()
-
+    """
     def robot_token_update(self):
         api_id = input("[robot mode]set api_id:")
         seckey = input("[robot mode]set seckey:")
@@ -70,17 +71,16 @@ class app_info_mode():
            fd = open(self.path+"/info.json",'w')
            fd.write(info_str)
            fd.close()
+
     def token_get(self):
         fd = open(self.path+"/info.json",'r')
         info_dict = json.load(fd)
         #print(info_dict["token"])
+ 
         if info_dict["token"]=="none":
             #print(info_dict["token"])
             self.robot_token_update()
         else:
             #print('111')
             self.token = info_dict["token"]   
-
-if __name__ == "__main__":
-    app_info = app_info_mode()
-    print(app_info.appid,app_info.seckey)
+        """
